@@ -1,6 +1,6 @@
 {
   "name": "astro-md-content-negotiation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Astro integration that generates Markdown versions of every page at build time, enabling HTTP content negotiation.",
   "keywords": [
     "astro",
