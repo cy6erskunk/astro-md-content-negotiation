@@ -84,7 +84,7 @@ async function globFiles(pattern: string, cwd: string): Promise<string[]> {
   return glob(pattern, { cwd, ignore: ["**/_*/**"] });
 }
 
-async function createConverter(
+export async function createConverter(
   remove: string[],
   keep: string[],
 ) {

@@ -144,6 +144,14 @@ markdownExport({
 });
 ```
 
+## Running tests
+
+```bash
+npm test
+```
+
+Uses Node's built-in test runner with native TypeScript support (no extra dependencies required).
+
 ## Testing locally
 
 ```bash
