@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { createConverter } from "./index.ts";
+import { createConverter } from "./converter.ts";
 
 describe("createConverter", () => {
   describe("linkFlattenContent", () => {
