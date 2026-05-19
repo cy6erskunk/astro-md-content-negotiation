@@ -34,6 +34,7 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
+    "test": "node --test 'src/**/*.test.ts'",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
