@@ -44,7 +44,7 @@
     "turndown-plugin-gfm": "^1.0.2"
   },
   "devDependencies": {
-    "@types/node": "25.5.0",
+    "@types/node": "25.9.0",
     "@types/turndown": "5.0.6",
     "astro": "6.3.1",
     "tsup": "^8.0.0",
