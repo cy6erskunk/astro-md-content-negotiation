@@ -1,6 +1,8 @@
 # astro-md-content-negotiation
 
-Astro integration that generates a Markdown (`.md`) version of every page at build time to serve with  **HTTP content negotiation** (serve HTML and Markdown from the same URL).
+Astro integration that generates a Markdown (`.md`) version of every page at build time, making your site easier readable by LLMs and AI crawlers, and enabling HTTP content negotiation (serve HTML and Markdown from the same URL).
+
+LLMs parse Markdown far more efficiently than HTML. By serving clean Markdown to clients that request it, you improve how your content is understood and cited by tools like ChatGPT, Perplexity, and Claude, with zero runtime cost.
 
 ```bash
 npm install astro-md-content-negotiation
@@ -172,12 +174,12 @@ curl -H "Accept: text/markdown" https://yoursite.com/blog/hello-world/
 
 ## How it compares to other approaches
 
-| Approach                        | Pros                              | Cons                                     |
-| ------------------------------- | --------------------------------- | ---------------------------------------- |
-| **This package (build-time)**   | Zero runtime cost, any host       | Needs hosting adapter for negotiation    |
-| Astro middleware (SSR)          | Dynamic, no build step            | Requires SSR, adds latency               |
-| Parallel `.md` API routes       | Simple, source-faithful           | Only works for content collection pages  |
-| Serving source `.md` directly   | Perfect fidelity                  | No Markdown for non-collection pages     |
+| Approach                        | Pros                                                  | Cons                                     |
+| ------------------------------- | ----------------------------------------------------- | ---------------------------------------- |
+| **This package (build-time)**   | Zero runtime cost, any host, LLM/AI crawler friendly  | Needs hosting adapter for negotiation    |
+| Astro middleware (SSR)          | Dynamic, no build step                                | Requires SSR, adds latency               |
+| Parallel `.md` API routes       | Simple, source-faithful                               | Only works for content collection pages  |
+| Serving source `.md` directly   | Perfect fidelity                                      | No Markdown for non-collection pages     |
 
 ## License
 
