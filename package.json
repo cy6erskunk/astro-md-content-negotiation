@@ -1,11 +1,14 @@
 {
   "name": "astro-md-content-negotiation",
   "version": "0.1.1",
-  "description": "Astro integration that generates Markdown versions of every page at build time, enabling HTTP content negotiation.",
+  "description": "Astro integration that generates Markdown versions of every page at build time, making your site readable by LLMs and AI crawlers, and enabling HTTP content negotiation.",
   "keywords": [
     "astro",
     "astro-integration",
+    "utils",
+    "seo",
     "markdown",
+    "llm",
     "content-negotiation",
     "turndown",
     "html-to-markdown"
