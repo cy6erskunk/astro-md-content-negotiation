@@ -14,7 +14,7 @@
   "author": "",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/cy6erskunk/astro-md-content-negotiation.git"
   },
   "type": "module",
   "exports": {
