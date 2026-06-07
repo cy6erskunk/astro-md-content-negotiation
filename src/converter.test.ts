@@ -3,6 +3,44 @@ import assert from "node:assert/strict";
 import { createConverter } from "./converter.ts";
 
 describe("createConverter", () => {
+  describe("remove option", () => {
+    it("strips elements whose tag name is in the remove list", async () => {
+      const td = await createConverter(["nav", "footer"], []);
+      const html = `<p>Hello</p><nav><a href="/">Home</a></nav><footer>Footer</footer>`;
+      const result = td.turndown(html);
+      assert.match(result, /Hello/);
+      assert.doesNotMatch(result, /Home/);
+      assert.doesNotMatch(result, /Footer/);
+    });
+
+    it("strips elements matched by a filter function", async () => {
+      const filter = (node: HTMLElement) => node.nodeName === "DIV" && node.getAttribute("class") === "ad";
+      const td = await createConverter([filter], []);
+      const html = `<p>Content</p><div class="ad">Buy now!</div>`;
+      const result = td.turndown(html);
+      assert.match(result, /Content/);
+      assert.doesNotMatch(result, /Buy now!/);
+    });
+  });
+
+  describe("keep option", () => {
+    it("preserves elements whose tag name is in the keep list as raw HTML", async () => {
+      const td = await createConverter([], ["details"]);
+      const result = td.turndown(`<p>Intro</p><details><summary>More</summary>Body</details>`);
+      assert.match(result, /Intro/);
+      assert.match(result, /<details>/);
+      assert.match(result, /<summary>More<\/summary>/);
+    });
+
+    it("preserves elements matched by a filter function as raw HTML", async () => {
+      const filter = (node: HTMLElement) => node.getAttribute("data-raw") === "true";
+      const td = await createConverter([], [filter]);
+      const result = td.turndown(`<p>Text</p><div data-raw="true"><span>kept</span></div>`);
+      assert.match(result, /Text/);
+      assert.match(result, /<div data-raw="true">/);
+    });
+  });
+
   describe("linkFlattenContent", () => {
     it("flattens a link whose <a> contains a decorative block element", async () => {
       const td = await createConverter([], []);

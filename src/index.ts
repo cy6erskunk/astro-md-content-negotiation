@@ -2,7 +2,7 @@ import type { AstroIntegration } from "astro";
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import fastGlob from "fast-glob";
-import { createConverter } from "./converter";
+import { createConverter, type FilterEntry } from "./converter";
 
 const { glob } = fastGlob;
 
@@ -29,23 +29,27 @@ export interface MarkdownExportOptions {
   selectors?: string[];
 
   /**
-   * Extra HTML tag names whose content should be stripped entirely
-   * from the Markdown output (on top of the built-in list: nav,
-   * footer, header, script, style, noscript, svg).
+   * Elements to strip entirely from the Markdown output (on top of
+   * the built-in list: nav, footer, header, script, style, noscript,
+   * svg).  Each entry is either a tag-name string or a predicate
+   * function `(node: HTMLElement) => boolean`.
    *
    * @example ["aside", "form"]
+   * @example [(node) => node.getAttribute("aria-hidden") === "true"]
    * @default []
    */
-  removeElements?: string[];
+  removeElements?: FilterEntry[];
 
   /**
-   * HTML tag names that have no Markdown equivalent and should be
-   * kept as raw HTML in the output.
+   * Elements to keep as raw HTML in the Markdown output (useful for
+   * tags with no Markdown equivalent).  Each entry is either a
+   * tag-name string or a predicate function
+   * `(node: HTMLElement) => boolean`.
    *
    * @example ["details", "summary", "video"]
    * @default []
    */
-  keepElements?: string[];
+  keepElements?: FilterEntry[];
 
   /**
    * Callback that receives the generated Markdown string and the

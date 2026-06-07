@@ -1,6 +1,6 @@
 # astro-md-content-negotiation
 
-Astro integration that generates a Markdown (`.md`) version of every page at build time, making your site easier readable by LLMs and AI crawlers, and enabling HTTP content negotiation (serve HTML and Markdown from the same URL).
+Astro integration that generates a Markdown (`.md`) version of every page at build time, making your site more friendly to LLMs and AI crawlers, and enabling HTTP content negotiation (serve HTML and Markdown from the same URL).
 
 LLMs parse Markdown far more efficiently than HTML. By serving clean Markdown to clients that request it, you improve how your content is understood and cited by tools like ChatGPT, Perplexity, and Claude, with zero runtime cost.
 
@@ -43,11 +43,13 @@ markdownExport({
 
   // Extra elements to strip from the Markdown output
   // (nav, footer, header, script, style, noscript, svg are
-  // always stripped).
+  // always stripped). Each entry is a tag name string or a
+  // predicate function (node: HTMLElement) => boolean.
   removeElements: ["aside", "form"],
 
   // Elements to keep as raw HTML in the Markdown output
-  // (useful for tags with no Markdown equivalent).
+  // (useful for tags with no Markdown equivalent). Each entry
+  // is a tag name string or a predicate function.
   keepElements: ["details", "summary", "video"],
 
   // Post-process the generated Markdown. Receives the Markdown
@@ -59,13 +61,15 @@ markdownExport({
 });
 ```
 
-| Option           | Type       | Default                        | Description                                    |
-| ---------------- | ---------- | ------------------------------ | ---------------------------------------------- |
-| `exclude`        | `string[]` | `[]`                           | Glob patterns to skip                          |
-| `selectors`      | `string[]` | `["main", "article", "body"]`  | Content extraction tags, in priority order      |
-| `removeElements` | `string[]` | `[]`                           | Extra tags to strip (added to built-in list)   |
-| `keepElements`   | `string[]` | `[]`                           | Tags to preserve as raw HTML                   |
-| `transform`      | `function` | `undefined`                    | `(markdown, filePath) => string`               |
+| Option           | Type                          | Default                        | Description                                    |
+| ---------------- | ----------------------------- | ------------------------------ | ---------------------------------------------- |
+| `exclude`        | `string[]`                    | `[]`                           | Glob patterns to skip                          |
+| `selectors`      | `string[]`                    | `["main", "article", "body"]`  | Content extraction tags, in priority order     |
+| `removeElements` | `(string \| FilterFn)[]`      | `[]`                           | Extra elements to strip (added to built-in list) |
+| `keepElements`   | `(string \| FilterFn)[]`      | `[]`                           | Elements to preserve as raw HTML               |
+| `transform`      | `function`                    | `undefined`                    | `(markdown, filePath) => string`               |
+
+`FilterFn` is `(node: HTMLElement, options: Options) => boolean` — the same predicate accepted by [Turndown's `remove()`/`keep()`](https://github.com/mixmark-io/turndown#removing-nodes).
 
 ## Hosting adapters
 
@@ -143,6 +147,17 @@ markdownExport({
 ```js
 markdownExport({
   keepElements: ["details", "summary", "video", "iframe"],
+});
+```
+
+### Strip elements by attribute using a filter function
+
+```js
+markdownExport({
+  removeElements: [
+    (node) => node.getAttribute("aria-hidden") === "true",
+    (node) => node.classList?.contains("decorative"),
+  ],
 });
 ```
 

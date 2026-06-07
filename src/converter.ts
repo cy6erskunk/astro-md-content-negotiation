@@ -1,9 +1,11 @@
 import TurndownService from "turndown";
 import { gfm } from "turndown-plugin-gfm";
 
+export type FilterEntry = string | TurndownService.FilterFunction;
+
 export async function createConverter(
-  remove: string[],
-  keep: string[],
+  remove: FilterEntry[],
+  keep: FilterEntry[],
 ): Promise<TurndownService> {
   const td = new TurndownService({
     headingStyle: "atx",
@@ -32,13 +34,12 @@ export async function createConverter(
     },
   });
 
-  // Cast to satisfy Turndown's Filter type which expects
-  // (keyof HTMLElementTagNameMap)[] — our strings may include
-  // custom element names that aren't in the built-in map.
-  td.remove(remove as TurndownService.Filter);
+  for (const f of remove) {
+    td.remove(f as TurndownService.Filter);
+  }
 
-  if (keep.length > 0) {
-    td.keep(keep as TurndownService.Filter);
+  for (const f of keep) {
+    td.keep(f as TurndownService.Filter);
   }
 
   // Improved fenced code block handling — preserves language class.
