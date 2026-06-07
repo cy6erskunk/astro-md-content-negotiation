@@ -23,6 +23,24 @@ describe("createConverter", () => {
     });
   });
 
+  describe("keep option", () => {
+    it("preserves elements whose tag name is in the keep list as raw HTML", async () => {
+      const td = await createConverter([], ["details"]);
+      const result = td.turndown(`<p>Intro</p><details><summary>More</summary>Body</details>`);
+      assert.match(result, /Intro/);
+      assert.match(result, /<details>/);
+      assert.match(result, /<summary>More<\/summary>/);
+    });
+
+    it("preserves elements matched by a filter function as raw HTML", async () => {
+      const filter = (node: HTMLElement) => node.getAttribute("data-raw") === "true";
+      const td = await createConverter([], [filter]);
+      const result = td.turndown(`<p>Text</p><div data-raw="true"><span>kept</span></div>`);
+      assert.match(result, /Text/);
+      assert.match(result, /<div data-raw="true">/);
+    });
+  });
+
   describe("linkFlattenContent", () => {
     it("flattens a link whose <a> contains a decorative block element", async () => {
       const td = await createConverter([], []);
