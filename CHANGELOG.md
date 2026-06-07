@@ -1,6 +1,32 @@
 # Changelog
 
 
+## v0.1.4
+
+[compare changes](https://github.com/cy6erskunk/astro-md-content-negotiation/compare/v0.1.2...v0.1.4)
+
+### 🩹 Fixes
+
+- **converter:** Support both strings and function to pass to TD converter ([0c54998](https://github.com/cy6erskunk/astro-md-content-negotiation/commit/0c54998))
+
+### 🤖 CI
+
+- Do not update peerDependencies with renovatebot ([322f6ff](https://github.com/cy6erskunk/astro-md-content-negotiation/commit/322f6ff))
+- Force semantic commits by renovatebot ([5f0c139](https://github.com/cy6erskunk/astro-md-content-negotiation/commit/5f0c139))
+
+## v0.1.3
+
+[compare changes](https://github.com/cy6erskunk/astro-md-content-negotiation/compare/v0.1.2...v0.1.3)
+
+### 🩹 Fixes
+
+- **converter:** Support both strings and function to pass to TD converter ([0c54998](https://github.com/cy6erskunk/astro-md-content-negotiation/commit/0c54998))
+
+### 🤖 CI
+
+- Do not update peerDependencies with renovatebot ([322f6ff](https://github.com/cy6erskunk/astro-md-content-negotiation/commit/322f6ff))
+- Force semantic commits by renovatebot ([5f0c139](https://github.com/cy6erskunk/astro-md-content-negotiation/commit/5f0c139))
+
 ## v0.1.1...v0.1.2
 
 [compare changes](https://github.com/cy6erskunk/astro-md-content-negotiation/compare/v0.1.1...v0.1.2)
