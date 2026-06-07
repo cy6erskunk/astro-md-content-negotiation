@@ -3,6 +3,26 @@ import assert from "node:assert/strict";
 import { createConverter } from "./converter.ts";
 
 describe("createConverter", () => {
+  describe("remove option", () => {
+    it("strips elements whose tag name is in the remove list", async () => {
+      const td = await createConverter(["nav", "footer"], []);
+      const html = `<p>Hello</p><nav><a href="/">Home</a></nav><footer>Footer</footer>`;
+      const result = td.turndown(html);
+      assert.match(result, /Hello/);
+      assert.doesNotMatch(result, /Home/);
+      assert.doesNotMatch(result, /Footer/);
+    });
+
+    it("strips elements matched by a filter function", async () => {
+      const filter = (node: HTMLElement) => node.nodeName === "DIV" && node.getAttribute("class") === "ad";
+      const td = await createConverter([filter], []);
+      const html = `<p>Content</p><div class="ad">Buy now!</div>`;
+      const result = td.turndown(html);
+      assert.match(result, /Content/);
+      assert.doesNotMatch(result, /Buy now!/);
+    });
+  });
+
   describe("linkFlattenContent", () => {
     it("flattens a link whose <a> contains a decorative block element", async () => {
       const td = await createConverter([], []);
