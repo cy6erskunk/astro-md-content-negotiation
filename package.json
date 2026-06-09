@@ -49,7 +49,7 @@
   "devDependencies": {
     "@types/node": "25.9.0",
     "@types/turndown": "5.0.6",
-    "astro": "6.4.2",
+    "astro": "6.4.3",
     "tsup": "^8.0.0",
     "typescript": "^5.5.0"
   },
