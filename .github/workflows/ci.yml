@@ -11,6 +11,10 @@ permissions:
 jobs:
   ci:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        astro-version: [5, 6, 7]
+    name: ci (astro@${{ matrix.astro-version }})
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
@@ -19,6 +23,10 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      - name: Install Astro ${{ matrix.astro-version }}
+        if: matrix.astro-version != 7
+        run: npm install astro@${{ matrix.astro-version }} --no-save
 
       - run: npm run typecheck
       - run: npm test
