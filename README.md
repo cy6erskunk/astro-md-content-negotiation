@@ -196,6 +196,10 @@ curl -H "Accept: text/markdown" https://yoursite.com/blog/hello-world/
 | Parallel `.md` API routes       | Simple, source-faithful                               | Only works for content collection pages  |
 | Serving source `.md` directly   | Perfect fidelity                                      | No Markdown for non-collection pages     |
 
+## Contributing
+
+This project uses [Conventional Commits](https://www.conventionalcommits.org/) for commit messages. Please prefix your commits with a type such as `feat:`, `fix:`, `ci:`, `docs:`, `refactor:`, `test:`, or `chore:`.
+
 ## License
 
 MIT
