@@ -200,6 +200,33 @@ curl -H "Accept: text/markdown" https://yoursite.com/blog/hello-world/
 
 This project uses [Conventional Commits](https://www.conventionalcommits.org/) for commit messages. Please prefix your commits with a type such as `feat:`, `fix:`, `ci:`, `docs:`, `refactor:`, `test:`, or `chore:`.
 
+## Releasing
+
+Releases are published to npm via GitHub Actions when a GitHub Release is created. Packages are signed with [npm provenance](https://docs.npmjs.com/generating-provenance-statements).
+
+### Steps
+
+1. Generate the changelog and bump the version:
+
+   ```bash
+   npx changelogen@latest --bump
+   ```
+
+2. Commit the changes and push with the new tag:
+
+   ```bash
+   git add .
+   git commit -m "chore(release): v$(node -p 'require(\"./package.json\").version')"
+   git push --follow-tags
+   ```
+
+3. Create a GitHub Release from the new tag — this triggers the publish workflow.
+
+### Setup (one-time)
+
+1. Create a **granular access token** on [npmjs.com](https://www.npmjs.com/) (Avatar > Access Tokens > Generate New Token > Granular Access Token). Scope it to the `astro-md-content-negotiation` package with **Read and write** permissions.
+2. Add the token as a repository secret named `NPM_TOKEN` in GitHub (Settings > Secrets and variables > Actions).
+
 ## License
 
 MIT
