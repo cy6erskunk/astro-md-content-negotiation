@@ -202,7 +202,7 @@ This project uses [Conventional Commits](https://www.conventionalcommits.org/) f
 
 ## Releasing
 
-Releases are published to npm via GitHub Actions when a GitHub Release is created. Packages are signed with [npm provenance](https://docs.npmjs.com/generating-provenance-statements).
+Releases are published to npm via GitHub Actions when a GitHub Release is published. Packages are signed with [npm provenance](https://docs.npmjs.com/generating-provenance-statements).
 
 ### Steps
 
@@ -220,7 +220,7 @@ Releases are published to npm via GitHub Actions when a GitHub Release is create
    git push --follow-tags
    ```
 
-3. Create a GitHub Release from the new tag — this triggers the publish workflow.
+3. Publish a GitHub Release from the new tag — this triggers the publish workflow. (Draft releases do not trigger publishing; the release must be published.)
 
 ### Setup (one-time)
 
