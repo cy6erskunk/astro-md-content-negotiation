@@ -215,9 +215,10 @@ Releases are published to npm via GitHub Actions when a GitHub Release is publis
 2. Commit the changes, tag the release, and push:
 
    ```bash
+   VERSION=$(node -p 'require("./package.json").version')
    git add .
-   git commit -m "chore(release): v$(node -p 'require(\"./package.json\").version')"
-   git tag "v$(node -p 'require("./package.json").version')"
+   git commit -m "chore(release): v$VERSION"
+   git tag -a "v$VERSION" -m "v$VERSION"
    git push --follow-tags
    ```
 
