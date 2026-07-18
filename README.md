@@ -212,11 +212,12 @@ Releases are published to npm via GitHub Actions when a GitHub Release is publis
    npx changelogen@latest --bump
    ```
 
-2. Commit the changes and push with the new tag:
+2. Commit the changes, tag the release, and push:
 
    ```bash
    git add .
    git commit -m "chore(release): v$(node -p 'require(\"./package.json\").version')"
+   git tag "v$(node -p 'require("./package.json").version')"
    git push --follow-tags
    ```
 
