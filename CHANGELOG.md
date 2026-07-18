@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v0.1.5
+
+[compare changes](https://github.com/cy6erskunk/astro-md-content-negotiation/compare/v0.1.4...v0.1.5)
+
+### 🩹 Fixes
+
+- **ci:** Remove double build and handle prerelease dist-tag ([d2f3c75](https://github.com/cy6erskunk/astro-md-content-negotiation/commit/d2f3c75))
+- **ci:** Checkout release tag, verify version, use lightweight tags ([d89daa8](https://github.com/cy6erskunk/astro-md-content-negotiation/commit/d89daa8))
+
+### 📖 Documentation
+
+- Add conventional commits note to README ([f9ddf61](https://github.com/cy6erskunk/astro-md-content-negotiation/commit/f9ddf61))
+- Add releasing section to README ([414c181](https://github.com/cy6erskunk/astro-md-content-negotiation/commit/414c181))
+- Clarify that release must be published, not just created ([8a27910](https://github.com/cy6erskunk/astro-md-content-negotiation/commit/8a27910))
+- Add explicit git tag step to release instructions ([42220ed](https://github.com/cy6erskunk/astro-md-content-negotiation/commit/42220ed))
+- Fix release commands quoting and use annotated tag ([f623fde](https://github.com/cy6erskunk/astro-md-content-negotiation/commit/f623fde))
+
+### 🤖 CI
+
+- Add Astro version matrix ([89f9e16](https://github.com/cy6erskunk/astro-md-content-negotiation/commit/89f9e16))
+
 ## v0.1.4
 
 [compare changes](https://github.com/cy6erskunk/astro-md-content-negotiation/compare/v0.1.2...v0.1.4)
