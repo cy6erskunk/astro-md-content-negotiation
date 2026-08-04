@@ -206,10 +206,10 @@ Releases are published to npm via GitHub Actions when a GitHub Release is publis
 
 ### Steps
 
-1. Generate the changelog and bump the version:
+1. Generate the changelog and and bump the version:
 
    ```bash
-   npx changelogen@latest --bump
+   npx changelogen@latest --bump --release --noAuthors
    ```
 
 2. Commit the changes, tag the release, and push:
