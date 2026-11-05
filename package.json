@@ -50,7 +50,7 @@
     "@types/node": "25.9.5",
     "@types/turndown": "5.0.6",
     "astro": "7.3.2",
-    "tsup": "^8.0.0",
+    "tsup": "^9.0.0",
     "typescript": "^5.5.0"
   },
   "peerDependencies": {
